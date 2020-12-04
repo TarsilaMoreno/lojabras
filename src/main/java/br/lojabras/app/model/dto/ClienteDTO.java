@@ -25,6 +25,14 @@ public class ClienteDTO implements Serializable {
 	
 	public ClienteEntity toEntity() {
 		return new ClienteEntity();
+//				id,
+//				nome,
+//				apelido
+//				telefone,
+//				cpf,
+//				cnpj,
+//				email,
+//				limiteCredito);
 		
 	}
 	

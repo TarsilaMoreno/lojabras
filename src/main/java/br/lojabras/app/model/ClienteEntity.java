@@ -1,5 +1,7 @@
 package br.lojabras.app.model;
 
+import static java.util.Optional.ofNullable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.lojabras.app.model.dto.ClienteDTO;
+import br.lojabras.app.model.dto.EstoqueDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +22,6 @@ import lombok.Setter;
 @Table(name = "clientes")
 public class ClienteEntity {
 
-	public ClienteEntity() {}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,5 +50,31 @@ public class ClienteEntity {
 				limiteCredito);
 	}
 	
+	public ClienteEntity(Long id, String nome, String apelido, 
+			Long telefone, Long cpf, Long cnpj, String email, Double limiteCredito) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.apelido = apelido;
+		this.cnpj = cnpj;
+		this.cpf = cpf;
+		this.email = email;
+		this.limiteCredito = limiteCredito;
+	}
 
+	public ClienteEntity() {
+		super();
+		}
+	
+	public void merge(ClienteDTO clienteDTO) {
+		this.nome = ofNullable(clienteDTO.getNome()).orElse(nome);
+		this.apelido = ofNullable(clienteDTO.getApelido()).orElse(apelido);
+		this.cnpj = ofNullable(clienteDTO.getCnpj()).orElse(cnpj);
+		this.cpf = ofNullable(clienteDTO.getCpf()).orElse(cpf);
+		this.email = ofNullable(clienteDTO.getEmail()).orElse(email);
+		this.limiteCredito = ofNullable(clienteDTO.getLimiteCredito()).orElse(limiteCredito);
+	}	
+	
+	
 }
+
