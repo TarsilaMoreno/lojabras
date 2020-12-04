@@ -23,7 +23,14 @@ public class EstoqueDTO implements Serializable {
 	private Double valorInd;
 	
 	public EstoqueEntity toEntity() {
-		return new EstoqueEntity(id, tipo, largura, cor, totalKg, totalUn, valorInd);
+		return new EstoqueEntity(
+				id, 
+				tipo, 
+				largura, 
+				cor, 
+				totalKg, 
+				totalUn, 
+				valorInd);
 	}
 
 }

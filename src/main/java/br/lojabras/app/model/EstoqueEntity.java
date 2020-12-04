@@ -1,5 +1,7 @@
 package br.lojabras.app.model;
 
+import static java.util.Optional.ofNullable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -57,6 +59,15 @@ public class EstoqueEntity {
 
 	public EstoqueEntity() {
 		super();
+	}
+	
+	public void merge(EstoqueDTO estoqueDTO) {
+		this.tipo = ofNullable(estoqueDTO.getTipo()).orElse(tipo);
+		this.largura = ofNullable(estoqueDTO.getLargura()).orElse(largura);
+		this.cor = ofNullable(estoqueDTO.getCor()).orElse(cor);
+		this.totalKg = ofNullable(estoqueDTO.getTotalKg()).orElse(totalKg);
+		this.totalUn = ofNullable(estoqueDTO.getTotalUn()).orElse(totalUn);
+		this.valorInd = ofNullable(estoqueDTO.getValorInd()).orElse(valorInd);
 	}
 
 }

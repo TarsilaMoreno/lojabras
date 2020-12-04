@@ -1,10 +1,14 @@
 package br.lojabras.app.response;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class BaseResponse {
 
 	public int statusCode;
 	public String message;
 
+	
 	public int getStatusCode() {
 		return statusCode;
 	}

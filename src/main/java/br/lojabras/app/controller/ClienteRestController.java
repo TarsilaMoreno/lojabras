@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.lojabras.app.model.dto.ClienteDTO;
+import br.lojabras.app.usecase.InserirClienteUseCase;
 import br.lojabras.app.usecase.ObterTodosClientesUseCase;
 import lombok.AllArgsConstructor;
 
@@ -17,16 +20,23 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/cliente")
 @AllArgsConstructor
 public class ClienteRestController {
-	
+
 	// @PostMapping
 	// @PatchMapping
 	// @DeleteMapping
-	
+
 	private final ObterTodosClientesUseCase obterTodosUseCase;
-	
+
+	private final InserirClienteUseCase inserirUseCase;
+
+	@PostMapping
+	public ResponseEntity<ClienteDTO> inserir(@RequestBody ClienteDTO cliente) {
+		return ok(inserirUseCase.execute(cliente));
+	}
+
 	@GetMapping
 	public ResponseEntity<List<ClienteDTO>> obterTodosClientes() {
 		return ok(obterTodosUseCase.execute());
 	}
-	
+
 }

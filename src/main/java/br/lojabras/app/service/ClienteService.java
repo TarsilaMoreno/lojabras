@@ -13,8 +13,13 @@ import lombok.AllArgsConstructor;
 public class ClienteService {
 
 	private final ClienteRepository repository;
-	
+
 	public List<ClienteEntity> obterTodos() {
 		return repository.findAll();
+	}
+
+	public void inserir(ClienteEntity cliente) {
+		repository.save(cliente);
+
 	}
 }

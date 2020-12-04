@@ -2,6 +2,7 @@ package br.lojabras.app.service;
 
 import java.util.List;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.lojabras.app.model.EstoqueEntity;
@@ -23,15 +24,17 @@ public class EstoqueService {
 		repository.save(estoque);
 	}
 	
-//	public EstoqueDTO atualizarEstoqueEntity () {
-//		return repository.findById(id);
-//	}
-	
-	public void deletar(EstoqueEntity estoque) {
-		repository.save(estoque);
+	public void atualizar(EstoqueEntity entity,EstoqueDTO produto) {
+		entity.merge(produto);
+		repository.save(entity);
 	}
 
-	public List<EstoqueEntity> obterOne() {
-		return repository.findOne();
+	public void deletar(Long id) {
+		repository.deleteById(id);
+	}
+
+	public EstoqueEntity obterProdutoPorId(Long id) {
+		return repository.findById(id)
+				.orElseThrow(() -> new EmptyResultDataAccessException("Produto_de_id_" + id + "_nao_encontrado", 1));
 	}
 }
