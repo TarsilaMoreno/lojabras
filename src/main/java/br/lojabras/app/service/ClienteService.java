@@ -30,6 +30,7 @@ public class ClienteService {
 		return repository.findById(id)
 				.orElseThrow(() -> new EmptyResultDataAccessException("Cliente_do_id_" + id + "_nao_encontrado", 1));
 	}
+	
 	public void atualizar(ClienteEntity entity,ClienteDTO cliente) {
 		entity.merge(cliente);
 		repository.save(entity);

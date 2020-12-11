@@ -35,4 +35,8 @@ public class FornecedorDTO implements Serializable {
 				contato);
 		
 	}
+
+	public FornecedorDTO toDTO() {
+		return null;
+	}
 }

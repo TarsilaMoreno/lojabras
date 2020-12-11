@@ -2,6 +2,7 @@ package br.lojabras.app.model;
 
 import static java.util.Optional.ofNullable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.lojabras.app.model.dto.ClienteDTO;
-import br.lojabras.app.model.dto.EstoqueDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,36 +23,28 @@ import lombok.Setter;
 @Table(name = "clientes")
 public class ClienteEntity {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String apelido;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private EnderecoEntity endereco;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private EnderecoEntity entrega;
 	private Long telefone;
 	private Long cpf;
 	private Long cnpj;
 	private String email;
 	private Double limiteCredito;
-	
+
 	public ClienteDTO toDTO() {
-		return new ClienteDTO(
-				id, 
-				nome, 
-				apelido, 
-				telefone, 
-				cpf, 
-				cnpj, 
-				email, 
-				limiteCredito);
+		return new ClienteDTO(id, nome, apelido, telefone, cpf, cnpj, email, limiteCredito, endereco.toDTO(),
+				entrega.toDTO());
 	}
-	
-	public ClienteEntity(Long id, String nome, String apelido, 
-			Long telefone, Long cpf, Long cnpj, String email, Double limiteCredito) {
+
+	public ClienteEntity(Long id, String nome, String apelido, Long telefone, Long cpf, Long cnpj, String email,
+			Double limiteCredito) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -64,8 +57,8 @@ public class ClienteEntity {
 
 	public ClienteEntity() {
 		super();
-		}
-	
+	}
+
 	public void merge(ClienteDTO clienteDTO) {
 		this.nome = ofNullable(clienteDTO.getNome()).orElse(nome);
 		this.apelido = ofNullable(clienteDTO.getApelido()).orElse(apelido);
@@ -73,8 +66,6 @@ public class ClienteEntity {
 		this.cpf = ofNullable(clienteDTO.getCpf()).orElse(cpf);
 		this.email = ofNullable(clienteDTO.getEmail()).orElse(email);
 		this.limiteCredito = ofNullable(clienteDTO.getLimiteCredito()).orElse(limiteCredito);
-	}	
-	
-	
-}
+	}
 
+}

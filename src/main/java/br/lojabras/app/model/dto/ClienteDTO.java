@@ -1,6 +1,8 @@
 package br.lojabras.app.model.dto;
 
 import java.io.Serializable;
+import java.util.Objects;
+import java.util.Optional;
 
 import br.lojabras.app.model.ClienteEntity;
 import lombok.AllArgsConstructor;
@@ -23,17 +25,18 @@ public class ClienteDTO implements Serializable {
 	private String email;
 	private Double limiteCredito;
 	
+	private EnderecoDTO endereco;
+	private EnderecoDTO entrega;
+	
 	public ClienteEntity toEntity() {
-		return new ClienteEntity();
-//				id,
-//				nome,
-//				apelido
-//				telefone,
-//				cpf,
-//				cnpj,
-//				email,
-//				limiteCredito);
-		
+		System.out.println(endereco);
+		System.out.println(entrega);
+		return new ClienteEntity(id, nome, apelido, Objects.isNull(endereco) ? null : endereco.toEntity(), Objects.isNull(entrega) ? null : entrega.toEntity(), telefone, cpf, cnpj, email, limiteCredito);
+	}
+
+	public ClienteDTO toDTO() {
+
+		return null;
 	}
 	
 }

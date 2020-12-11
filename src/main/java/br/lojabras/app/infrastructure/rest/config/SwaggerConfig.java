@@ -1,5 +1,9 @@
 package br.lojabras.app.infrastructure.rest.config;
 
+import static springfox.documentation.builders.PathSelectors.any;
+import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
+import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,10 +17,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+	private static final String PACKAGE_CONTROLLER = "br.lojabras.app.controller";
+
 	@Bean
 	public Docket api() {
-		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("br.hoteleveris.app.controller")).paths(PathSelectors.any())
+		return new Docket(SWAGGER_2)
+				.select()
+				.apis(basePackage(PACKAGE_CONTROLLER))
+				.paths(any())
 				.build();
 	}
 
