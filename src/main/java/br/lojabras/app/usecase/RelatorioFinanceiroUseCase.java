@@ -18,7 +18,8 @@ public class RelatorioFinanceiroUseCase {
 	
 	public final RelatorioFinanceiroService service;
 	
-	public List<VendasDTO> execute(String status,String condicao, String dataIni, String dataFim) throws ParseException {
-		return service.geraRelatorio(status,condicao, dataIni, dataFim).stream().map(VendasEntity::toDTO).collect(toList());
+	public List<VendasDTO> execute(String status,Double valor, String dataIni, String dataFim, Long cliente, Long produto) throws ParseException {
+		return service.geraRelatorioFinanceiro(status,valor, dataIni, dataFim, cliente, produto)
+				.stream().map(VendasEntity::toDTO).collect(toList());
 	}
 }

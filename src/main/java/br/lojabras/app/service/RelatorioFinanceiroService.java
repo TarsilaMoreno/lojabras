@@ -12,11 +12,11 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class RelatorioFinanceiroService {
-	
+
 	private final VendasRepositoryService repositoryService;
-	
-	public List<VendasEntity> geraRelatorio(String status,String condicao, String dataIni, String dataFim) throws ParseException {
-		return repositoryService.geraRelatorio(status,condicao, dataIni, dataFim);
+
+	public List<VendasEntity> geraRelatorioFinanceiro(String status,Double valor, String dataIni, String dataFim, Long cliente, Long produto)
+			throws ParseException {
+		return repositoryService.geraRelatorioFinanceiro(status,valor, dataIni, dataFim, cliente, produto);
 	}
-	
 }

@@ -6,6 +6,7 @@ import br.lojabras.app.model.EnderecoEntity;
 
 
 
-public interface EnderecoRepository extends JpaRepository<EnderecoEntity, Long>{ 
+public interface EnderecoRepository extends JpaRepository<EnderecoEntity, Long>{
 
+	
 }

@@ -42,22 +42,50 @@ public class VendasRepositoryService {
 	    if (!ofNullable(status).isEmpty()) {
 	        predicates.add(cb.equal(vendas.get("status"), status));
 	    }
+	    
 	    if (!ofNullable(condicao).isEmpty()) {
 	        predicates.add(cb.equal(vendas.get("condicao"), condicao));
 	    }
+	    
 	    if (!ofNullable(dataIni).isEmpty() && ofNullable(dataFim).isEmpty())  {
 	    	predicates.add(cb.equal(vendas.get("data"), formatter.parse(dataIni)));
-	    }
-	    if (!ofNullable(dataIni).isEmpty() && !ofNullable(dataFim).isEmpty()) {
+	    } else if (!ofNullable(dataIni).isEmpty() && !ofNullable(dataFim).isEmpty()) {
 	    	predicates.add(cb.between(vendas.get("data"), formatter.parse(dataIni),formatter.parse(dataFim)));
 	    }
 	    cq.where(predicates.toArray(new Predicate[0]));
 
 	    return em.createQuery(cq).getResultList();
 	}
+
+	public List<VendasEntity> geraRelatorioFinanceiro(String periodo, Double valor, String status, String dataFim, Long cliente, Long produto) throws ParseException {
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+	    CriteriaQuery<VendasEntity> cq = cb.createQuery(VendasEntity.class);
+
+	    Root<VendasEntity> vendas = cq.from(VendasEntity.class);
+	    List<Predicate> predicates = new ArrayList<>();
+	    
+	    
+	    if (!ofNullable(periodo).isEmpty()) {
+	        predicates.add(cb.equal(vendas.get("periodo"), periodo));
+	    }
+	    if (!ofNullable(valor).isEmpty()) {
+	        predicates.add(cb.equal(vendas.get("valor"), valor));
+	    }
+	    if (!ofNullable(status).isEmpty()) {
+	        predicates.add(cb.equal(vendas.get("status"), status));
+	    }
+	    
+	    cq.where(predicates.toArray(new Predicate[0]));
+
+	    return em.createQuery(cq).getResultList();
+		}
+
+	
+	}
 	
 	
-}
+	
+
 
 		
 //		Date data = Date.from(LocalDate.parse("23/12/2020").atStartOfDay(ZoneId.systemDefault()).toInstant());

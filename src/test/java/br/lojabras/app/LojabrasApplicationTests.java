@@ -8,6 +8,6 @@ class LojabrasApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
-
 }

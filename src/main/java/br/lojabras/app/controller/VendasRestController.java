@@ -24,6 +24,7 @@ import br.lojabras.app.usecase.InserirVendaEstoqueUseCase;
 import br.lojabras.app.usecase.ObterOneVendaUseCase;
 import br.lojabras.app.usecase.ObterTodasVendasUseCase;
 import br.lojabras.app.usecase.RelatorioFinanceiroUseCase;
+import br.lojabras.app.usecase.RelatorioVendasUseCase;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -41,7 +42,9 @@ public class VendasRestController {
 
 	private final DeletarVendaUseCase deletarUseCase;
 
-	private final RelatorioFinanceiroUseCase relatorioUseCase;
+	private final RelatorioFinanceiroUseCase relatorioFinanceiroUseCase;
+	
+	private final RelatorioVendasUseCase relatorioVendasUseCase;
 
 	@PostMapping
 	public ResponseEntity<VendasDTO> inserir(@RequestBody VendasDTO venda) {
@@ -69,12 +72,20 @@ public class VendasRestController {
 		return noContent().build();
 	}
 
-	@GetMapping("/relatorio")
+	@GetMapping("/relatorioVendas")
 	public ResponseEntity<List<VendasDTO>> gerarRelatorio(@RequestParam(required = false) String dataIni,
 			@RequestParam(required = false) String dataFim, @RequestParam(required = false) String status,
 			@RequestParam(required = false) String condicao) throws ParseException {
 		
-		return ok(relatorioUseCase.execute(status, condicao, dataIni, dataFim));
+		return ok(relatorioVendasUseCase.execute(status, condicao, dataIni, dataFim));
 	}
+	
+	@GetMapping("/relatorioFinanceiro")
+	public ResponseEntity<List<VendasDTO>> gerarRelatorioFinanceiro(@RequestParam(required = false) String dataIni,
+			@RequestParam(required = false) String dataFim, @RequestParam(required = false) String status, @RequestParam(required = false) Long cliente,
+			@RequestParam(required = false) Long produto, @RequestParam(required = false) Double valor) throws ParseException {
+		
+		return ok(relatorioFinanceiroUseCase.execute(status,valor, dataIni, dataFim, cliente, produto));
 
+	}
 }
