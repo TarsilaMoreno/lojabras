@@ -4,6 +4,7 @@ import static org.springframework.http.ResponseEntity.ok;
 
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +16,10 @@ import br.lojabras.app.usecase.BuscaBancoUseCase;
 import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 public class BuscaBancoController {
 	
-	private final BuscaBancoUseCase buscaUseCase;
+	@Autowired
+	private BuscaBancoUseCase buscaUseCase;
 	
 	@GetMapping("/buscaBanco/{banco}")
 	public ResponseEntity<BuscaBancoDTO> obterBanco(@PathVariable("banco") String banco) {

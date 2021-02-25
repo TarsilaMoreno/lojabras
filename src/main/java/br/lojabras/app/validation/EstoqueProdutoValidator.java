@@ -13,19 +13,19 @@ public class EstoqueProdutoValidator {
 
 	public void validate(EstoqueDTO estoque) {
 
-		if (ofNullable(estoque.getTipo()).orElseThrow(() -> new ProdutoNaoExisteException("tipo_nao_foi_declarado"))
+		/*if (ofNullable(estoque.getTipo()).orElseThrow(() -> new ProdutoNaoExisteException("tipo_nao_foi_declarado"))
 				.isBlank())
-			throw new ProdutoNaoExisteException("tipo_nao_foi_declarado");
+			throw new ProdutoNaoExisteException("tipo_nao_foi_declarado"); */
 
-		if (ofNullable(estoque.getCor()).orElseThrow(() -> new ProdutoNaoExisteException("cor_nao_foi_declarado"))
+		/*if (ofNullable(estoque.getCor()).orElseThrow(() -> new ProdutoNaoExisteException("cor_nao_foi_declarado"))
 				.isBlank())
-			throw new ProdutoNaoExisteException("cor_nao_foi_declarado");
+			throw new ProdutoNaoExisteException("cor_nao_foi_declarado"); */
 
-		if (ofNullable(estoque.getTotalUn())
+		/*if (ofNullable(estoque.getTotalUn())
 				.orElseThrow(() -> new ProdutoNaoExisteException("total_un_nao_foi_declarado_ou_e_negativo")) <= 0)
-			throw new ProdutoNaoExisteException("total_un_nao_foi_declarado_ou_e_negativo");
+			throw new ProdutoNaoExisteException("total_un_nao_foi_declarado_ou_e_negativo"); */
 
-		if (ofNullable(estoque.getTotalKg())
+		/*if (ofNullable(estoque.getTotalKg())
 				.orElseThrow(() -> new ProdutoNaoExisteException("total_kg_nao_foi_declarado_ou_e_negativo")) <= 0)
 			throw new ProdutoNaoExisteException("total_kg_nao_foi_declarado_ou_e_negativo");
 
@@ -35,7 +35,7 @@ public class EstoqueProdutoValidator {
 
 		if (ofNullable(estoque.getValorInd()).orElseThrow(
 				() -> new ProdutoNaoExisteException("valor_nao_foi_declarado_ou_nao_e_maior_que_zero")) < 0)
-			throw new ProdutoNaoExisteException("valor_nao_foi_declarado_ou_nao_e_maior_que_zero");
+			throw new ProdutoNaoExisteException("valor_nao_foi_declarado_ou_nao_e_maior_que_zero"); */
 	}
 
 	public void validate(EstoqueEntity estoque) {

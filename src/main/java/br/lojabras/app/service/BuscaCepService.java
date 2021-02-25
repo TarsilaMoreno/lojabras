@@ -1,29 +1,38 @@
 package br.lojabras.app.service;
 
 import static java.lang.String.format;
+import static java.util.Optional.ofNullable;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import br.lojabras.app.model.dto.EnderecoCepDTO;
-import lombok.AllArgsConstructor;
+import br.lojabras.app.util.ResponseUtilHelper;
+
 
 @Service
-@AllArgsConstructor
 public class BuscaCepService {
-
-	private static final String CEP_API = "https://viacep.com.br/ws/%s/json/unicode/";
 	
-	private final RestTemplate rest;
+
+	private static final String CEP_API = "json/unicode";
+
+	@Autowired
+	private ResponseUtilHelper parseHelper;
+
+	@Autowired
+	private WebTarget target;
 
 	public EnderecoCepDTO obterCep(String cep) {
-		try {
-			return rest.getForEntity(format(CEP_API, cep), EnderecoCepDTO.class).getBody();
-		} catch (Exception e) {
-			throw new EmptyResultDataAccessException(1);
-		}
+		Response response = target.path(cep).path(CEP_API)
+				.request(APPLICATION_JSON)
+				.get();
+
+		return ofNullable(parseHelper.read(response, EnderecoCepDTO.class)).orElseThrow();
+
 	}
 
-	
 }

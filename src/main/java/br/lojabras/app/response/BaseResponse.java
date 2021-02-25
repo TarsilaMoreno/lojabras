@@ -5,16 +5,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class BaseResponse {
 
-	public int statusCode;
+	public int size;
 	public String message;
 
 	
-	public int getStatusCode() {
-		return statusCode;
+	public int getSize() {
+		return size;
 	}
 
-	public void setStatusCode(int statusCode) {
-		this.statusCode = statusCode;
+	public void setSize(int size) {
+		this.size = size;
 	}
 
 	public String getMessage() {

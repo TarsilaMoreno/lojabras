@@ -1,29 +1,35 @@
 package br.lojabras.app.service;
 
 import static java.lang.String.format;
+import static java.util.Optional.ofNullable;
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-import java.net.URISyntaxException;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import br.lojabras.app.model.dto.BuscaBancoDTO;
-import lombok.AllArgsConstructor;
+import br.lojabras.app.util.ResponseUtilHelper;
 
 @Service
-@AllArgsConstructor
 public class BuscaBancoService {
 
-	private static final String BANCO_API = "https://brasilapi.com.br/api/banks/v1/%s";
+	private static final String BANCO_API = "banks/v1/%s";
 
-	private final RestTemplate rest;
-	
+	@Autowired
+	private ResponseUtilHelper parseHelper;
+
+	@Autowired
+	private WebTarget targetBrasilApi;
+
 	public BuscaBancoDTO obterBanco(String banco) {
-		try {
-			return rest.getForEntity(format(BANCO_API, banco), BuscaBancoDTO.class).getBody();
-		} catch (Exception e) {
-			throw new EmptyResultDataAccessException(1);
-		}
+		Response response = targetBrasilApi
+				.path(format(BANCO_API, banco))
+				.request(APPLICATION_JSON).get();
+
+		return ofNullable(parseHelper.read(response, BuscaBancoDTO.class)).orElseThrow();
+
 	}
 }
