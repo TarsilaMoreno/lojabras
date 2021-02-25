@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import br.lojabras.app.model.ClienteEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +21,7 @@ public class ClienteDTO implements Serializable {
 	
 	private Long id;
 	private String nome;
+	@NotBlank(message ="não foi declarado")
 	private String apelido;
 	private Long telefone;
 	private Long cpf;
@@ -25,7 +29,9 @@ public class ClienteDTO implements Serializable {
 	private String email;
 	private Double limiteCredito;
 	
+	@Valid
 	private EnderecoDTO endereco;
+	@Valid
 	private EnderecoDTO entrega;
 	
 	public ClienteEntity toEntity() {

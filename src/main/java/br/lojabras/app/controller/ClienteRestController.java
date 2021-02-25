@@ -5,6 +5,8 @@ import static org.springframework.http.ResponseEntity.ok;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,7 @@ public class ClienteRestController {
 	private DeletarClienteUseCase deletarUseCase;
 
 	@PostMapping
-	public ResponseEntity<ClienteDTO> inserir(@RequestBody ClienteDTO cliente) {
+	public ResponseEntity<ClienteDTO> inserir(@Valid @RequestBody ClienteDTO cliente) {
 		return ok(inserirUseCase.execute(cliente));
 	}
 

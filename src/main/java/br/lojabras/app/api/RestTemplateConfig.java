@@ -1,22 +1,26 @@
 package br.lojabras.app.api;
 
-import java.net.URI;
-import java.net.URISyntaxException;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
 	
+	private static final String CEP_API = "https://viacep.com.br/ws";
+	
+	private static final String BANCO_API = "https://brasilapi.com.br/api";
+	
+
 	@Bean
-	public RestTemplate rest() {
-	    return new RestTemplate();
+	public WebTarget target() {
+		return ClientBuilder.newClient().target(CEP_API);
+	}
+	@Bean
+	public WebTarget targetBrasilApi() {
+		return ClientBuilder.newClient().target(BANCO_API);
 	}
 	
-	@Bean
-	public URI cepURI() throws URISyntaxException {
-		return new URI("https://viacep.com.br/ws/17015270/json/unicode/");
-	}
 }
