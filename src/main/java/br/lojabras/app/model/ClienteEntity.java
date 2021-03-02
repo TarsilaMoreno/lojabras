@@ -39,7 +39,7 @@ public class ClienteEntity {
 	private Double limiteCredito;
 
 	public ClienteDTO toDTO() {
-		return new ClienteDTO(id, nome, apelido, telefone, cpf, cnpj, email, limiteCredito, endereco.toDTO(),
+		return new ClienteDTO(id, nome, apelido, telefone.toString(), cpf.toString(), cnpj.toString(), email, limiteCredito, endereco.toDTO(),
 				entrega.toDTO());
 	}
 
@@ -62,10 +62,10 @@ public class ClienteEntity {
 	public void merge(ClienteDTO clienteDTO) {
 		this.nome = ofNullable(clienteDTO.getNome()).orElse(nome);
 		this.apelido = ofNullable(clienteDTO.getApelido()).orElse(apelido);
-		this.cnpj = ofNullable(clienteDTO.getCnpj()).orElse(cnpj);
-		this.cpf = ofNullable(clienteDTO.getCpf()).orElse(cpf);
+		this.cnpj = Long.valueOf(ofNullable(clienteDTO.getCnpj()).orElse(cnpj.toString()));
+		this.cpf = Long.valueOf(ofNullable(clienteDTO.getCpf()).orElse(cpf.toString()));
 		this.email = ofNullable(clienteDTO.getEmail()).orElse(email);
 		this.limiteCredito = ofNullable(clienteDTO.getLimiteCredito()).orElse(limiteCredito);
 	}
-
+	
 }

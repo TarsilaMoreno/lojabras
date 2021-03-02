@@ -15,7 +15,7 @@ public class FornecedorValidator {
 
 	public void validate(FornecedorDTO cadastro) {
 		
-		if (ofNullable(cadastro.getCnpj()).orElseThrow(() -> new FornecedorNaoExisteException("cnpj_nao_foi_declarado")).toString().length() != 14)
+		/*if (ofNullable(cadastro.getCnpj()).orElseThrow(() -> new FornecedorNaoExisteException("cnpj_nao_foi_declarado")).toString().length() != 14)
 			throw new ClienteNaoExisteException("cnpj_nao_foi_declarado");
 		
 		if (ofNullable(cadastro.getRazaoSocial()).orElseThrow(() -> new FornecedorNaoExisteException("razaoSocial_nao_foi_declarada")).isBlank())
@@ -34,7 +34,7 @@ public class FornecedorValidator {
 			throw new ClienteNaoExisteException("email_nao_foi_declarado");
 		
 		if (ofNullable(cadastro.getContato()).orElseThrow(() -> new FornecedorNaoExisteException("contato_nao_foi_declarado")).isBlank())
-			throw new ClienteNaoExisteException("contato_nao_foi_declarado");	
+			throw new ClienteNaoExisteException("contato_nao_foi_declarado");	*/
 	}
  public void validate(FornecedorEntity fornecedor) {
 	 this.validate(fornecedor.toDTO());

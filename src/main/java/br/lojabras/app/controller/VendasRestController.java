@@ -6,6 +6,8 @@ import static org.springframework.http.ResponseEntity.ok;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +49,7 @@ public class VendasRestController {
 	private final RelatorioVendasUseCase relatorioVendasUseCase;
 
 	@PostMapping
-	public ResponseEntity<VendasDTO> inserir(@RequestBody VendasDTO venda) {
+	public ResponseEntity<VendasDTO> inserir(@Valid @RequestBody VendasDTO venda) {
 		return ok(inserirUseCase.execute(venda));
 	}
 

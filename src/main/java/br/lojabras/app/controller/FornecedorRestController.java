@@ -5,6 +5,8 @@ import static org.springframework.http.ResponseEntity.ok;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +42,7 @@ public class FornecedorRestController {
 	private final DeletarFornecedorUseCase deletarUseCase;
 	
 	@PostMapping
-	public ResponseEntity<FornecedorDTO> inserir(@RequestBody FornecedorDTO cadastro) {
+	public ResponseEntity<FornecedorDTO> inserir(@Valid @RequestBody FornecedorDTO cadastro) {
 		return ok(inserirUseCase.execute(cadastro));
 	}
 	@GetMapping

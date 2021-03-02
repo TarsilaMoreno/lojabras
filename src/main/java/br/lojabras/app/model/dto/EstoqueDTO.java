@@ -24,22 +24,22 @@ public class EstoqueDTO implements Serializable {
 	private String tipo;
 	
 	@NotNull(message="não foi declarado")
-	@Min(value=1, message="valor minimo deve ser 1")
+	@Min(value=1, message="valor mínimo deve ser 1")
 	private Double largura;
 	
 	@NotBlank(message="não foi declarado")
 	private String cor;
 	
 	@NotNull(message="não foi declarado")
-	@Min(value=1, message="valor minimo deve ser 1")
+	@Min(value=1, message="valor mínimo deve ser 1")
 	private Double totalKg;
 	
 	@NotNull(message="não foi declarado")
-	@Min(value=1, message="valor minimo deve ser 1")
+	@Min(value=1, message="valor mínimo deve ser 1")
 	private Double totalUn;
 	
 	@NotNull(message="não foi declarado")
-	@Min(value=1, message="valor minimo deve ser 1")
+	@Min(value=1, message="valor mínimo deve ser 1")
 	private Double valorInd;
 	
 	public EstoqueEntity toEntity() {

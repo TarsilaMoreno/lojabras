@@ -14,7 +14,7 @@ import br.lojabras.app.validation.exception.VendaNaoExisteException;
 public class VendasValidator {
 	
 	public void validate(VendasDTO venda) {
-		if (ofNullable(venda.getCliente()).orElseThrow(() -> new VendaNaoExisteException("Cliente_nao_foi_declarado")).toString().isBlank())
+	/*	if (ofNullable(venda.getCliente()).orElseThrow(() -> new VendaNaoExisteException("Cliente_nao_foi_declarado")).toString().isBlank())
 			throw new VendaNaoExisteException("Cliente_nao_foi_declarado");
 		
 		if (ofNullable(venda.getData()).orElseThrow(() -> new VendaNaoExisteException("Data_nao_foi_declarada")).toString().isBlank())
@@ -40,7 +40,7 @@ public class VendasValidator {
 			throw new VendaNaoExisteException("Produto_nao_foi_declarado");
 		
 		if (ofNullable(venda.getTipoEndereco()).orElseThrow(() -> new VendaNaoExisteException("Tipo_Endereco_nao_foi_declarado")).toString().isBlank())
-			throw new VendaNaoExisteException("Tipo_Endereco_nao_foi_declarado");
+			throw new VendaNaoExisteException("Tipo_Endereco_nao_foi_declarado"); */
 	}
 	public void validate(VendasEntity venda) {
 		 this.validate(venda.toDTO());

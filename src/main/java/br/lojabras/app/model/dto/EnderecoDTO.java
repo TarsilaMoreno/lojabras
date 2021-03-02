@@ -20,25 +20,25 @@ public class EnderecoDTO implements Serializable {
 	
 	private Long id;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String logradouro;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String numero;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String complemento;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String bairro;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String cidade;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String estado;
 	
-	@NotBlank(message="nao foi declarado")
+	@NotBlank(message="não foi declarado")
 	private String cep;
 	
 	private ClienteDTO cliente;
