@@ -41,7 +41,6 @@ public class EnderecoDTO implements Serializable {
 	@NotBlank(message="nao foi declarado")
 	private String cep;
 	
-	private ClienteDTO cliente;
 
 	public EnderecoEntity toEntity() {
 		return new EnderecoEntity(

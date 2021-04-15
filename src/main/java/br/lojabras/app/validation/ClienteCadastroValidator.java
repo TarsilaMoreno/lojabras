@@ -12,6 +12,8 @@ import br.lojabras.app.validation.exception.ClienteNaoExisteException;
 @Component
 public class ClienteCadastroValidator {
 	
+
+
 	public void validate(ClienteDTO cliente) {
 		
 		if (ofNullable(cliente.getNome()).orElseThrow(() -> new ClienteNaoExisteException("nome_nao_foi_declarado")).isBlank())

@@ -39,7 +39,7 @@ public class EnderecoEntity {
 	private ClienteEntity cliente;
 
 	public EnderecoDTO toDTO() {
-		return new EnderecoDTO(id, logradouro, numero, complemento, bairro, cidade, estado, cep, null);
+		return new EnderecoDTO(id, logradouro, numero, complemento, bairro, cidade, estado, cep);
 	}
 
 //	public EnderecoEntity(Long id, String logradouro,String numero,
